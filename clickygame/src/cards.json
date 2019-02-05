@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "name": "Paladin",
+        "img": "https://i.imgur.com/keHkhWc.png",
+        "clicked": 0
+    },
+    {
+        "id": 2,
+        "name": "Dark Knight",
+        "img": "https://i.imgur.com/cOqTyCg.png",
+        "clicked": 0
+    },
+    {
+        "id": 3,
+        "name": "Warrior",
+        "img": "https://i.imgur.com/BWZY1Jk.png",
+        "clicked": 0
+    },
+    {
+        "id": 4,
+        "name": "White Mage",
+        "img": "https://i.imgur.com/0tvTpzt.png",
+        "clicked": 0
+    },
+    {
+        "id": 5,
+        "name": "Scholar",
+        "img": "https://i.imgur.com/8qhPxUD.png",
+        "clicked": 0
+    },
+    {
+        "id": 6,
+        "name": "Astrologian",
+        "img": "https://i.imgur.com/EMFyTCr.png",
+        "clicked": 0
+    },
+    {
+        "id": 7,
+        "name": "Bard",
+        "img": "https://i.imgur.com/bC7XjGb.png",
+        "clicked": 0
+    },
+    {
+        "id": 8,
+        "name": "Machinist",
+        "img": "https://i.imgur.com/KcCZYB0.png",
+        "clicked": 0
+    },
+    {
+        "id": 9,
+        "name": "Dragoon",
+        "img": "https://i.imgur.com/1hIykgl.png",
+        "clicked": 0
+    },
+    {
+        "id": 10,
+        "name": "Samurai",
+        "img": "https://i.imgur.com/KOSa1RE.png",
+        "clicked": 0
+    },
+    {
+        "id": 11,
+        "name": "Summoner",
+        "img": "https://i.imgur.com/wHaRH32.png",
+        "clicked": 0
+    },
+    {
+        "id": 12,
+        "name": "Red Mage",
+        "img": "https://i.imgur.com/e1SS7eA.png",
+        "clicked": 0
+    }
+]
