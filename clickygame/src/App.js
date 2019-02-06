@@ -7,7 +7,6 @@ import Nav from "./components/Nav";
 class App extends Component {
 
   //the state where we will track our cards and score
-
   state = {
     CardList,
     score: 0
@@ -16,6 +15,7 @@ class App extends Component {
   // GAME LOGIC GOES HERE
 
   gameOver = () => {
+    console.log("Game over");
     //game fail state
     this.state.CardList.forEach(card => {
       card.clicked=0
@@ -25,37 +25,41 @@ class App extends Component {
     this.setState({score: 0})
 
     //randomizing the cards and starting again
-    return this.state.CardList.sort(() => Math.random() - 0.5)
+    return;
   }
 
 
-  clickEvent = (id) => {
-    console.log("Clicked!")
-    this.state.CardList.find((card, i) => {
-      if (card.id === id) {
-        if(CardList[i].clicked === 0) {
-          //we add +1 to the score and also to the relevant ID that has been clicked
-          this.setState({score: this.state.score + 1, CardList: CardList[i].clicked + 1})
+  clickEvent = (event) => {
+    event.preventDefault();
 
-          //then we shuffle the cards and start another round
-          this.state.CardList.sort(() => Math.random() - 0.5)
-        
-          return true
-        } else {
-          //if the card has been clicked, this is the game over state and we run the gameOver function
-          return this.gameOver()
-        }
-      }
-    return false
-    })
+    let currentId = event.target.id;
+    console.log("Clicked!")
+    console.log(currentId);
+
+    if (!this.state.CardList[currentId].clicked) {
+      console.log("It has not been clicked!:" + this.state.CardList[currentId].clicked);
+
+      let tempArray = this.state.CardList.slice();
+      tempArray[currentId].clicked = 1;
+
+      console.log(tempArray);
+
+      this.setState({score: this.state.score + 1, CardList: tempArray});
+    
+    } else {
+      console.log("It's been clicked!: " + this.state.CardList[currentId].clicked);
+      this.gameOver();
+    }
   }
 
   //in our render, we are creating and setting a card for each card in our json file
   render() {
     return (
       <div className="container">
+      <Nav 
+        score = {this.state.score}
+      />
       <div className="row">
-        <Nav />
         {this.state.CardList.map(card => (
           <Card 
             key = {card.id}
