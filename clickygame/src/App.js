@@ -6,25 +6,45 @@ import Nav from "./components/Nav";
 
 class App extends Component {
 
-  //the state where we will track our cards and score
+  //the state where we will track our cards, score and high score
   state = {
     CardList,
-    score: 0
+    score: 0,
+    highScore: 0
+  }
+
+  //shuffled array code from: https://www.jstips.co/en/javascript/shuffle-an-array/
+  //it loops through the array and shuffles each object within it
+  shuffled = (array) => {
+    var i, j, temp;
+
+    for (i = array.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+
+    console.log(array);
+
+    return array;
   }
 
   // GAME LOGIC GOES HERE
 
+  //game fail state
   gameOver = () => {
     console.log("Game over");
-    //game fail state
+
+    //resetting the 'clicked' property to false for new game, since nothing has been clicked for it!
     this.state.CardList.forEach(card => {
-      card.clicked=0
+      card.clicked=0;
     })
 
     //resetting the score to zero
-    this.setState({score: 0})
+    this.setState({score: 0});
 
-    //randomizing the cards and starting again
+    //and starting again
     return;
   }
 
@@ -32,10 +52,12 @@ class App extends Component {
   clickEvent = (event) => {
     event.preventDefault();
 
+    //pulling the current ID from the clicked card
     let currentId = event.target.id;
     console.log("Clicked!")
     console.log(currentId);
 
+    //checking to see if the card has been clicked before or not
     if (!this.state.CardList[currentId].clicked) {
       console.log("It has not been clicked!:" + this.state.CardList[currentId].clicked);
 
@@ -44,10 +66,16 @@ class App extends Component {
 
       console.log(tempArray);
 
-      this.setState({score: this.state.score + 1, CardList: tempArray});
+      this.setState({score: this.state.score + 1, CardList: this.shuffled(tempArray)});
+
     
     } else {
       console.log("It's been clicked!: " + this.state.CardList[currentId].clicked);
+
+      if (this.state.score >= this.state.highScore) {
+        this.setState({highScore: this.state.score});
+      }
+
       this.gameOver();
     }
   }
@@ -58,6 +86,7 @@ class App extends Component {
       <div className="container">
       <Nav 
         score = {this.state.score}
+        highScore = {this.state.highScore}
       />
       <div className="row">
         {this.state.CardList.map(card => (

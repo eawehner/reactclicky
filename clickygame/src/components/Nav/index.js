@@ -10,7 +10,10 @@ function Nav(props) {
             {/* code for the score tracker would go here;
                     the score would add +1 to the state through this.state.score
                     the score would be displayed   */}
-            <span>Score: {props.score}</span>
+            <ul className="navbar-nav mr-auto">
+                <li className="nav-item active"><span className="nav-link" id="score">Score: {props.score}</span></li>
+                <li className="nav-item active"><span className="nav-link" id="highScore">High Score: {props.highScore}</span></li>
+            </ul>
         </nav>
     )
 };
