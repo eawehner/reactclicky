@@ -25,6 +25,7 @@ class App extends Component {
       array[j] = temp;
     }
 
+    console.log("Shuffled: ")
     console.log(array);
 
     return array;
@@ -42,7 +43,7 @@ class App extends Component {
     })
 
     //resetting the score to zero
-    this.setState({score: 0});
+    this.setState({score: 0, CardList: this.shuffled(CardList)});
 
     //and starting again
     return;
@@ -53,24 +54,17 @@ class App extends Component {
     event.preventDefault();
 
     //pulling the current ID from the clicked card
-    let currentId = event.target.id;
-    console.log("Clicked!")
-    console.log(currentId);
+    let currentID = event.target.id;
 
-    //checking to see if the card has been clicked before or not
-    if (!this.state.CardList[currentId].clicked) {
-      console.log("It has not been clicked!:" + this.state.CardList[currentId].clicked);
+    if (!this.state.CardList[currentID].clicked) {
 
       let tempArray = this.state.CardList.slice();
-      tempArray[currentId].clicked = 1;
-
       console.log(tempArray);
+      tempArray[currentID].clicked = 1;
 
       this.setState({score: this.state.score + 1, CardList: this.shuffled(tempArray)});
-
     
     } else {
-      console.log("It's been clicked!: " + this.state.CardList[currentId].clicked);
 
       if (this.state.score >= this.state.highScore) {
         this.setState({highScore: this.state.score});
@@ -89,10 +83,10 @@ class App extends Component {
         highScore = {this.state.highScore}
       />
       <div className="row">
-        {this.state.CardList.map(card => (
+        {this.state.CardList.map((card, i) => (
           <Card 
             key = {card.id}
-            id = {card.id}
+            id = {i}
             img = {card.img}
             clicked = {card.clicked}
             clickEvent = {this.clickEvent}

@@ -8,7 +8,7 @@ function Card(props) {
         <div className="col-sm-4">
             <div className="card">
                 <div className="card-body">
-                    <img src={props.img} id={props.id} onClick={props.clickEvent} alt={props.name} />
+                    <img src={props.img} id={props.id} clicked={props.clicked} onClick={props.clickEvent} alt={props.name} key={props} />
                 </div>
             </div>
         </div>
